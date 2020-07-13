@@ -1,9 +1,12 @@
 package com.cybertek.step_definitions;
 
+import com.cybertek.pages.GoogleSearchPage;
 import com.cybertek.utilities.Driver;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import org.junit.Assert;
+import org.openqa.selenium.Keys;
 
 public class GoogleStepDefinitions {
     @Given("User is on the Google search page")
@@ -28,5 +31,41 @@ public class GoogleStepDefinitions {
        // Assert.assertTrue("Actual title doesn't match expected title!", actualTitle.equals(expectedTitle));
     }
 
+    @When("User searches apple")
+    public void user_searches_apple() {
+        // creating the page object
+        GoogleSearchPage googleSearchPage = new GoogleSearchPage();
 
+        // sending value into search box using page object
+        googleSearchPage.searchBox.sendKeys("apple" + Keys.ENTER);
+    }
+
+
+    @Then("User should see apple in the title")
+    public void user_should_see_apple_in_the_title() {
+       String expectedTitle = "apple - Google Search";
+       String actualTitle = Driver.getDriver().getTitle();
+
+       Assert.assertEquals(actualTitle, expectedTitle);
+    }
+
+
+    @When("User searches {string}") // Cucumber recognize  "" as a string, we have to pass string as an argument
+    public void userSearches(String searchValue) {
+
+        // creating the page object
+        GoogleSearchPage googleSearchPage = new GoogleSearchPage();
+
+        // sending value into search box using page object
+        googleSearchPage.searchBox.sendKeys(searchValue + Keys.ENTER);
+    }
+
+    @Then("User should see {string} in the title")
+    public void userShouldSeeInTheTitle(String searchValue) {
+
+        String expectedTitle = searchValue + " - Google Search";
+        String actualTitle = Driver.getDriver().getTitle();
+
+        Assert.assertEquals(actualTitle, expectedTitle);
+    }
 }

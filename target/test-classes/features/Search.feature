@@ -1,9 +1,25 @@
 Feature: Search
   Agile Story: As a user I should be able to search when I'm on Google search page.
 
+  Background: User should be on google search page
+    Given User is on the Google search page
+
+
   Scenario: Google default title verification
     Given User is on the Google search page
     Then User should see title is Google
+
+    @wip      # work in progress
+    Scenario: Google title verification after search
+      When User searches apple
+      Then User should see apple in the title
+
+  @wip
+  Scenario: Google title verification after search
+    When User searches "peach"
+    Then User should see "peach" in the title
+
+
 
 
 
