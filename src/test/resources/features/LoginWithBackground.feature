@@ -20,6 +20,7 @@ Feature: Login feature
     Then User should see dashboard
 
 
+    @db
   Scenario: Admin login scenario
     When User logs in as an admin
     Then User should see dashboard
