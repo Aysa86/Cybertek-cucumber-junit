@@ -9,6 +9,8 @@ import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.Keys;
 
+import java.util.List;
+
 public class GoogleStepDefinitions {
 
     // creating the page object
@@ -91,7 +93,16 @@ public class GoogleStepDefinitions {
         String expectedTitle = "Google - About Google, Our Culture & Company News";
 
         Assert.assertTrue(actualTitle.equals(expectedTitle));
+    }
+    @Then("User should see six links in the footer")
+    public void user_should_see_six_links_in_the_footer(List<String> linkStrings) {
+        //System.out.println("linkStrings.size() = " + linkStrings.size()); // linkStrings.size() = 6
+        System.out.println("linkStrings = " + linkStrings); // linkStrings = [Advertising, Business, How Search Works, Privacy, Terms, Settings]
+        int expectedSize = linkStrings.size();
+        int actualSize = googleSearchPage.footerLinks.size();
 
+        Assert.assertEquals(actualSize,expectedSize);
 
     }
+
 }
