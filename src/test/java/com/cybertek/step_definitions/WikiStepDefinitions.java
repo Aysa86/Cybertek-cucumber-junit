@@ -36,4 +36,14 @@ public class WikiStepDefinitions {
     }
 
 
+    @Then("User should see {string} in the main header")
+    public void userShouldSeeInTheMainHeader(String expected) {
+
+        String actualHeaderText = wikiPage.mainHeaderAfterSearch.getText();
+
+        Assert.assertEquals(actualHeaderText, expected);
+
+
+
+    }
 }
