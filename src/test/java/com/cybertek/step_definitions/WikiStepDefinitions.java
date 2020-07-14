@@ -21,7 +21,7 @@ public class WikiStepDefinitions {
 
 
     @When("User searches {string} in the wiki search page")
-    public void user_searches_in_the_wiki_search_page(String string) {
+    public void user_searches_in_the_wiki_search_page(String string) { // searching for Steve Jobs
 
         wikiPage.searchBox.sendKeys(string + Keys.ENTER);
 
@@ -45,5 +45,12 @@ public class WikiStepDefinitions {
 
 
 
+    }
+
+    @Then("User should see {string} in the image header")
+    public void userShouldSeeInTheImageHeader(String expectedHeader) {
+        String actualHeader = wikiPage.imageHeaderAfterSearch.getText();
+
+        Assert.assertEquals(actualHeader, expectedHeader);
     }
 }
